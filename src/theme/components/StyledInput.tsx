@@ -2,7 +2,7 @@ import React from 'react'
 import { StyleSheet } from 'react-native'
 import { theme } from '../theme'
 import { TextInput } from 'react-native-paper';
-import { themes, useCustomContext } from '../../context/Context';
+import { useCustomContext } from '../../context/Context';
 
 interface Props {
   isDisable?: boolean
@@ -33,7 +33,7 @@ export const StyledInput: React.FC<Props> = ({placeholder, width, onChange, name
         contentStyle={{color: theme.colors.blue}}
         activeOutlineColor={theme.colors.blue}
         style={{width: typeof width === "number" ? width : `${width}`}}
-        outlineStyle={{borderRadius: width * 0.06, backgroundColor: `${actualTheme === themes.light ? "#00000011" : "#ffffffcc"}`}}
+        outlineStyle={{borderRadius: width * 0.06, backgroundColor: `${actualTheme === "light" ? "#00000011" : "#ffffffcc"}`}}
         // selectTextOnFocus={true}
         blurOnSubmit={true}
       />

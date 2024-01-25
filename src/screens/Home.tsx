@@ -4,7 +4,7 @@ import { StatusBar } from 'expo-status-bar';
 import Navbar from '../components/Navbar';
 import { Icon } from "@rneui/themed"
 import { Card, StyledInput, StyledText, StyledButton, StyledModal } from '../theme';
-import { themes, useCustomContext } from '../context/Context';
+import { useCustomContext } from '../context/Context';
 import { theme } from '../theme/theme';
 
 export const Home = () => {
@@ -33,11 +33,11 @@ export const Home = () => {
   return (
     <>
       <StatusBar 
-        style={actualTheme === themes.light ? "dark" : "light"}
+        style={actualTheme === "light" ? "dark" : "light"}
         animated={true} translucent={true} 
-        backgroundColor={`${actualTheme === themes.light ? theme.colors.white : theme.colors.black}`}
+        backgroundColor={`${actualTheme === "light" ? theme.colors.white : theme.colors.black}`}
       />
-      <View style={[styles.container, {flexDirection: 'column', backgroundColor: `${actualTheme === themes.light ? theme.colors.white : theme.colors.black}`}]}>
+      <View style={[styles.container, {flexDirection: 'column', backgroundColor: `${actualTheme === "light" ? theme.colors.white : theme.colors.gray}`}]}>
         <Navbar />
         <View style={[styles.container, {flexDirection: 'row'}]}>
           <Card cardWidth={0.4} cardHeight={0.2} onPress={demoTouchableCard}>

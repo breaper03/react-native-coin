@@ -2,6 +2,7 @@ interface IColors {
   black: string
   white: string
   gray: string
+  lightGray: string
   blue: string
   lightBlue: string
   red: string
@@ -50,6 +51,7 @@ export const theme: ITheme = {
     black: "#161616",
     white: "#D1D1D1",
     gray: "#2f2f2f",
+    lightGray: "#bbbbbb80",
     blue: "#61B0B7",
     lightBlue: "#B8E3FF",
     red: "#CD3939",

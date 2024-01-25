@@ -5,7 +5,7 @@ import Constants from "expo-constants"
 import { theme } from '../theme/theme'
 import SwitchTheme from '../theme/components/SwitchTheme'
 import { Icon } from '@rneui/themed'
-import { themes, useCustomContext } from '../context/Context'
+import { useCustomContext } from '../context/Context'
 import { StyledText } from '../theme'
 
 const Navbar = () => {
@@ -13,19 +13,19 @@ const Navbar = () => {
   const { actualTheme } = useCustomContext();
 
   return (
-    <View style={[styles.container, {width: "100%", backgroundColor: `${actualTheme === themes.dark ? theme.colors.black : theme.colors.white}`}]}>
-      <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-start'}}>
+    <View style={[styles.container, {width: "100%", backgroundColor: `${actualTheme === "dark" ? theme.colors.black : theme.colors.white}`}]}>
+      <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-start', width: "49%"}}>
         <TouchableOpacity
-          style={[styles.notificationContainer, {flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', width: width * 0.3}]}
+          style={[styles.notificationContainer, {flexDirection: 'row', backgroundColor: `${actualTheme === "dark" ? theme.colors.gray : theme.colors.lightGray}`, alignItems: 'center', justifyContent: 'space-between', width: width * 0.35, paddingRight: 15}]}
         > 
           <Icon name='user-circle' type='font-awesome-5' solid color={theme.colors.blue} size={27}/>
-          <StyledText color='white' fontWeight='normal'>UserName</StyledText>
+          <StyledText color={actualTheme === "dark" ? theme.colors.white : theme.colors.gray} fontWeight='bold' >UserName</StyledText>
         </TouchableOpacity>
       </View>
       <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'space-around', gap: 20}}>
         <SwitchTheme />
         <TouchableOpacity
-          style={[styles.notificationContainer]}
+          style={[styles.notificationContainer, {backgroundColor: `${actualTheme === "dark" ? theme.colors.gray : theme.colors.lightGray}`}]}
         > 
           <Icon name='bell' type='material-community' solid color={theme.colors.blue}/>
         </TouchableOpacity>
@@ -56,6 +56,5 @@ const styles = StyleSheet.create({
   notificationContainer: {
     padding: 16 * 0.5,
     borderRadius: 16 * 2,
-    backgroundColor: theme.colors.gray
   }
 })

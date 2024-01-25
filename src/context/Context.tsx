@@ -1,14 +1,10 @@
 import React, { ReactNode, createContext, useContext, useEffect, useState } from "react";
 import * as SecureStore from "expo-secure-store";
+import { Appearance, ColorSchemeName, useColorScheme } from "react-native";
 
 interface ContextProps {
-  actualTheme: themes | undefined;
-  setTheme: any
-}
-
-export enum themes {
-  light,
-  dark
+  actualTheme: string | ColorSchemeName | undefined;
+  onChangeTheme: any
 }
 
 const Context = createContext<ContextProps | undefined>(undefined)
@@ -19,19 +15,29 @@ interface ProviderProps {
 
 const ContextProvider: React.FC<ProviderProps> = ({ children }) => {
   
+  const OS = Appearance.getColorScheme()
+
   useEffect(() => {
-    const actualThemes = SecureStore.getItemAsync("theme")
-    typeof actualThemes === "string"
-      ? setTheme(actualThemes) 
-      : setTheme(themes.light) 
-  }, [])
+    
+    if (OS) {
+      console.log("entraaaa", OS)
+      setTheme(OS)
+    }
+
+  }, [OS])
   
 
-  const [actualTheme, setTheme] = useState<themes>();
+  const systemColorScheme = useColorScheme();
+  const [actualTheme, setTheme] = useState(systemColorScheme);
+
+  const onChangeTheme = async (newTheme: ColorSchemeName) => {
+    Appearance.setColorScheme(newTheme);
+    setTheme(newTheme);
+  };
 
   return (
     <Context.Provider value={{ 
-      actualTheme, setTheme
+      actualTheme, onChangeTheme
     }}>
       {children}
     </Context.Provider>
